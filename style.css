@@ -1,0 +1,39 @@
+*{
+    margin: 0;
+    /* border: 2px solid black; */
+}
+
+main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100%;
+}
+
+.header-home{
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+}
+
+.header-background{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.login-container{
+}
+
+.register-form{
+    display: flex;
+    flex-direction: column;
+    
+    margin: 15px 25px;
+}
+form{
+    flex-direction: column;
+}
+
