@@ -7,21 +7,42 @@ async function printQuestionsAndAnswers() {
     let questions = data.results;
 
     for (let i = 0; i < questions.length; i++) {
-        //Preguntas
+        //Questions
         let h2 = document.createElement('h2');
         h2.innerHTML = questions[i].question;
         questionContainer.appendChild(h2);
 
-        //respuesta correcta
+        //inputs from correct answers
+        let inputCorrect = document.createElement('input');
+        inputCorrect.setAttribute('type', 'checkbox');
+        questionContainer.appendChild(inputCorrect)
+
+        //Correct answer
         let correctAnswer = document.createElement('p');
         correctAnswer.innerHTML = questions[i].correct_answer;
         questionContainer.appendChild(correctAnswer);
 
-        //Respuestas incorrectas
-        let incorrectAnswers = questions[i].incorrect_answers
-        console.log(incorrectAnswers)
+        //incorrect answers
+        let incorrectAnswers = questions[i].incorrect_answers;
+        //esto es un bucle for of, la primera variable es cada elemento, y la segunda es el array completo
+        for (let incorrectAnswer of incorrectAnswers) {
+            console.log(incorrectAnswer);
+
+            //inputs for incorrect answers
+            let inputIncorrect = document.createElement('input');
+            inputIncorrect.setAttribute('type', 'checkbox');
+            questionContainer.appendChild(inputIncorrect)
+
+            //Incorrect answers printed
+            let pOfIncorrectAnswers = document.createElement('p');
+            pOfIncorrectAnswers.innerText = incorrectAnswer;
+            questionContainer.appendChild(pOfIncorrectAnswers)
+
+        }
+
     }
 }
 
 printQuestionsAndAnswers();
 
+//lo siguiente es conseguir el resultado. El resultado va a ser el numero de inputs en estado checked que tengan el value true. antes de nada hay que meterle un atributo value a las respuesta correctas de true, y a las incorrectas un valor de false
