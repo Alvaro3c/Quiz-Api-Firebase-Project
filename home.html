@@ -10,10 +10,6 @@
     <!-- GoogleFonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Handlee&display=swap" rel="stylesheet">
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
     <title>Quiz</title>
@@ -21,27 +17,29 @@
 
 <body>
     <header class="header-home">
-            <img src="./Assets/quiz.png" alt="logo">        
+            <img src="./Assets/logo1.png" alt="logo">        
     </header>
     <main class="login-container">
-        <section class="register-form">
-            <h2>How smart are you?</h2>
-            <form>
+        <section >
+            <form class="register-form">
                 <input type="email" id="email" placeholder="Your Email" required>
-                <label></label>
-                <input type="password" id="password" placeholder="Password" required>
-                <label></label>
-                <button>Log in</button>
+                <input type="password" id="password" placeholder="Password"  pattern="^(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{6,}$" required>                
+                <button class="login-button">Log in</button>
+                <p class="or">Not register yet?</p>
+                <button id="register-btn">Sign up</button>
+                <button id="google-auth">
+                        <img class="google-logo" src="./Assets/buscar.png">
+                    Sign up with Google
+                </button>
             </form>
-            <button id="register-btn">Sign up</button>
-            <button id="google-auth">Google</button>
+          
         </section>
         <section id="results">
             <article>
                 <div id="graph">
 
                 </div>
-                <button id="play-again-home">Play again</button>
+                <!-- <button id="play-again-home">Play again</button> -->
             </article>
         </section>
     </main>
