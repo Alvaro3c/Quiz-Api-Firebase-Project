@@ -1,5 +1,6 @@
 const questionContainer = document.querySelector('.question-container');
-const inputs = document.getElementsByTagName('input')
+const inputs = document.querySelectorAll('.answer')
+console.log(inputs)
 
 async function printQuestionsAndAnswers() {
     let response = await fetch('https://opentdb.com/api.php?amount=10&category=12&difficulty=medium&type=multiple');
@@ -15,7 +16,8 @@ async function printQuestionsAndAnswers() {
         //inputs from correct answers
         let inputCorrect = document.createElement('input');
         inputCorrect.setAttribute('type', 'checkbox');
-        inputCorrect.setAttribute('value', 'correct')
+        inputCorrect.setAttribute('value', 'correct');
+        inputCorrect.setAttribute('class', 'answer')
         questionContainer.appendChild(inputCorrect);
 
         //Correct answer
@@ -30,13 +32,14 @@ async function printQuestionsAndAnswers() {
             //inputs for incorrect answers
             let inputIncorrect = document.createElement('input');
             inputIncorrect.setAttribute('type', 'checkbox');
+            inputIncorrect.setAttribute('class', 'answer')
             questionContainer.appendChild(inputIncorrect)
 
             //Incorrect answers printed
             let pOfIncorrectAnswers = document.createElement('p');
             pOfIncorrectAnswers.innerText = incorrectAnswer;
-            pOfIncorrectAnswers.setAttribute('value', 'incorrect')
-            questionContainer.appendChild(pOfIncorrectAnswers)
+            pOfIncorrectAnswers.setAttribute('value', 'incorrect');
+            questionContainer.appendChild(pOfIncorrectAnswers);
         }
     }
 }
@@ -45,5 +48,3 @@ printQuestionsAndAnswers();
 
 //lo siguiente es conseguir el resultado. El resultado va a ser el numero de inputs en estado checked que tengan el value true. antes de nada hay que meterle un atributo value a las respuesta correctas de true, y a las incorrectas un valor de false
 
-
-console.log(inputs)
