@@ -6,40 +6,43 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+
+    <!-- GoogleFonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
     <title>Quiz</title>
 </head>
 
 <body>
-    <div class="wrapper">
-        <header id="header-home">
-            <div class="header-background">
-                <div class="logo-bacground">
-                    <img src="" alt="">
+    <header class="header-home">
+            <img src="./Assets/logo1.png" alt="logo">        
+    </header>
+    <main class="login-container">
+        <section >
+            <form class="register-form">
+                <input type="email" id="email" placeholder="Your Email" required>
+                <input type="password" id="password" placeholder="Password"  pattern="^(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{6,}$" required>                
+                <button class="login-button">Log in</button>
+                <p class="or">Not register yet?</p>
+                <button id="register-btn">Sign up</button>
+                <button id="google-auth">
+                        <img class="google-logo" src="./Assets/buscar.png">
+                    Sign up with Google
+                </button>
+            </form>
+          
+        </section>
+        <section id="results">
+            <article>
+                <div id="graph">
+
                 </div>
-            </div>
-        </header>
-        <main>
-            <section class="register-form">
-                <h2></h2>
-                <form action="">
-                    <input type="email" id="email">
-                    <input type="password" id="password">
-                    <button>Inicia sesion</button>
-                </form>
-                <button id="register-btn">register</button>
-                <button id="google-auth">G</button>
-            </section>
-            <section id="results">
-                <article>
-                    <div id="graph">
-
-                    </div>
-                    <button id="play-again-home">Play again</button>
-                </article>
-            </section>
-        </main>
-    </div>
-
+                <!-- <button id="play-again-home">Play again</button> -->
+            </article>
+        </section>
+    </main>
     <script src="script.js"></script>
 </body>
 
