@@ -29,7 +29,7 @@ async function printQuestionsAndAnswers() {
         arrayAllAnswers.push(arrayAnswers)
     }
 
-
+    let print = ``
 
     // funcion para randomizar las respuestas. Eto no ze toca
 
