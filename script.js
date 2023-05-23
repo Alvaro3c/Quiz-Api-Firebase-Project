@@ -103,6 +103,9 @@ async function printQuestionsAndAnswers() {
             input.id = id;
             label.setAttribute('for', id);
         };
+        //hide question
+        //escoger los 4 primeros
+
     });
 };
 printQuestionsAndAnswers();
