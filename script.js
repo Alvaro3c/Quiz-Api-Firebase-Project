@@ -1,10 +1,11 @@
+let getInfo;
 
 async function fetchQuestions() {
   try {
     let response = await fetch('https://opentdb.com/api.php?amount=10&category=12&difficulty=medium&type=multiple');
     let data = await response.json();
     let objQuestions = data.results;
-    let getInfo = objQuestions.map(question => ({
+      getInfo = objQuestions.map(question => ({
       question: question.question,
       correctAnswer: question.correct_answer,
       incorrectAnswers: question.incorrect_answers
@@ -17,6 +18,14 @@ async function fetchQuestions() {
   } catch (error) {
     console.log(error);
   }
+}
+
+function getQuestionsFromLocalStorage() {
+  let questionsData = localStorage.getItem('questionsData');
+  if (questionsData) {
+    return JSON.parse(questionsData);
+  }
+  return null;
 }
 
 
@@ -33,7 +42,7 @@ function showQuestion(question, index) {
     <input type="radio" id="answer_${index}_incorrect2" name="answer_${index}" value="${question.incorrectAnswers[1]}">
     <label for="answer_${index}_incorrect2">${question.incorrectAnswers[1]}</label>
     <input type="radio" id="answer_${index}_incorrect3" name="answer_${index}" value="${question.incorrectAnswers[2]}">
-    <label for="answer_${index}_correct3">${question.incorrectAnswers[2]}</label>`;
+    <label for="answer_${index}_incorrect3">${question.incorrectAnswers[2]}</label>`;
 
   article.innerHTML = print;
   section.appendChild(article);
@@ -55,9 +64,19 @@ function showNextQuestion() {
     });
   }
 
+  let score = 0;
+
   function handleNextButtonClick() {
     let selectedAnswer = questions[currentIndex].querySelector(`input[name="answer_${currentIndex}"]:checked`);
     if (selectedAnswer) {
+      let userAnswer = selectedAnswer.value;
+      let correctAnswer = getInfo[currentIndex].correctAnswer;
+
+      if (userAnswer === correctAnswer) { 
+      score++;
+      console.log(score);
+      }
+
       currentIndex++;
       if (currentIndex < questions.length) {
         showQuestionAtIndex(currentIndex);
