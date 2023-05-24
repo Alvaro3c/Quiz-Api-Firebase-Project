@@ -2,7 +2,7 @@ const questionContainer = document.querySelector('.question-container');
 const buttonNext = document.querySelector('.button-next')
 const inputs = document.querySelectorAll('input');
 const article = document.querySelector('article');
-
+//
 async function printQuestionsAndAnswers() {
 
     try {
