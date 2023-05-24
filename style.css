@@ -146,15 +146,21 @@ input[type="radio"]:checked + label {
     font-family: Roboto, times, serif;
     font-size: 20px;
     letter-spacing: 2px;
+    
 }
 
 
 .header-quiz h1{
     display: flex;
+    /* border-radius: 10px; */
+    /* border: 1px solid black; */
+    /* box-shadow: -10px 0 20px 0 #0bba9d, */
+                /* 0 10px 20px 0 #0bba9d;   */
 }
+
 .you{
-    color: #0bba9d
-}
+    color: #0bba9d;
+}    
 .logo {
     height: 50px;
     width: 50px;
