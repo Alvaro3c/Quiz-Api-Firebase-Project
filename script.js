@@ -144,3 +144,4 @@ var options = {
 
 
 new Chartist.Line('.ct-chart', chartData, options);
+
