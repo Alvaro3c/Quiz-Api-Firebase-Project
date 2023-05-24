@@ -32,13 +32,13 @@ label {
 
 label:hover {
     border: none;
-    background-color: #9dd9d2;
+    background-color: #0bba9d;
     color: #FFFFFF;
 }
 
 input[type="radio"]:checked + label {
     border: none;
-    background-color: #9dd9d2;
+    background-color: #0bba9d;
     color: #FFFFFF;
     transform: translateY(-5px);
 }
@@ -100,7 +100,7 @@ input[type="radio"]:checked + label {
     background-color: #0bba9d;
     color: #FFFFFF;
     border: none;   
-    box-shadow: 0px 2px 4px rgba(11, 186, 157, 0.5);
+    box-shadow: 0px 2px 4px rgba(150, 157, 155, 0.5);
 }
 
  
@@ -109,9 +109,8 @@ input[type="radio"]:checked + label {
     border-radius: 10px;
     font-size: 19px;
     font-weight: bolder;
-    color: #FFFFFF;
-    background-color: #0bba9d;
-    border: none;
+    /* background-color: #000000; */
+    border: 2px solid #5EE2A6;
     box-shadow: 0px 2px 4px rgba(11, 186, 157, 0.5);
     color: #000000;
 }
@@ -173,8 +172,11 @@ input[type="radio"]:checked + label {
 }
 
 .quiz-container h2 {
-    background-color: #0bba9d;
-    color: #FFFFFF;
+    background-color: ;
+    border: 2px solid #000000;
+    color: #000000;
+    box-shadow: 0px 2px 4px rgba(150, 157, 155, 0.5);
+
     padding: 15px 25px;
     border-radius: 10px;
     margin-top: 15px;
