@@ -122,6 +122,7 @@ async function printQuestionsAndAnswers() {
 printQuestionsAndAnswers();
 
 
+
 //Chartist
 const getData = JSON.parse(localStorage.getItem('gameData'));
 
