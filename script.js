@@ -67,24 +67,36 @@ function showNextQuestion() {
   let score = 0;
 
   function handleNextButtonClick() {
-    let selectedAnswer = questions[currentIndex].querySelector(`input[name="answer_${currentIndex}"]:checked`);
-    if (selectedAnswer) {
-      let userAnswer = selectedAnswer.value;
-      let correctAnswer = getInfo[currentIndex].correctAnswer;
-
-      if (userAnswer === correctAnswer) { 
-      score++;
-      console.log(score);
-      }
-
-      currentIndex++;
-      if (currentIndex < questions.length) {
-        showQuestionAtIndex(currentIndex);
-      } else {
-        section.innerHTML = "¡Todas las preguntas han sido respondidas!";
-      }
-    } else {
+    const selectedAnswer = questions[currentIndex].querySelector(`input[name="answer_${currentIndex}"]:checked`);
+  
+    if (!selectedAnswer) {
       alert("Selecciona una respuesta antes de pasar a la siguiente pregunta.");
+      return;
+    }
+  
+    const userAnswer = selectedAnswer.value;
+    const correctAnswer = getInfo[currentIndex].correctAnswer;
+    const isAnswerCorrect = userAnswer === correctAnswer;
+  
+    if (isAnswerCorrect) {
+      score++;
+    }
+  
+    const currentDate = new Date().toLocaleDateString();
+    const gameData = {
+    score: score,
+    date: currentDate
+    };
+
+    localStorage.setItem('gameData', JSON.stringify(gameData)); 
+    
+    console.log(score);
+  
+    currentIndex++;
+    if (currentIndex < questions.length) {
+      showQuestionAtIndex(currentIndex);
+    } else {
+      section.innerHTML = "¡Todas las preguntas han sido respondidas!";
     }
   }
 
