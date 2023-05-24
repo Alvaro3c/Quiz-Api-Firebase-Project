@@ -44,22 +44,22 @@ function showQuestion(question, index) {
 
 
     let arrTemplateString = [
-        `<div class${index}" id="2">
+        `
     <input type="radio" id="answer_${index}_correct" name="answer_${index}" value="${question.correctAnswer}">
     <label for="answer_${index}_correct">${question.correctAnswer}</label>
-    </div>`,
-        `<div class${index}" id="3">
+    `,
+        `
     <input type="radio" id="answer_${index}_incorrect1" name="answer_${index}" value="${question.incorrectAnswers[0]}">
     <label for="answer_${index}_incorrect1">${question.incorrectAnswers[0]}</label>
-    </div>`,
-        `<div class${index}" id="4">
+    `,
+        `
     <input type="radio" id="answer_${index}_incorrect2" name="answer_${index}" value="${question.incorrectAnswers[1]}">
     <label for="answer_${index}_incorrect2">${question.incorrectAnswers[1]}</label>
-    </div>`,
-        `<div class${index}" id="1">
+    `,
+        `
     <input type="radio" id="answer_${index}_incorrect3" name="answer_${index}" value="${question.incorrectAnswers[2]}">
     <label for="answer_${index}_incorrect3">${question.incorrectAnswers[2]}</label>
-    </div>`
+    `
     ]
 
     let arrRandom = randomArray()
@@ -100,7 +100,14 @@ function showNextQuestion() {
                 section.innerHTML = "¡Todas las preguntas han sido respondidas!";
             }
         } else {
-            alert("Selecciona una respuesta antes de pasar a la siguiente pregunta.");
+            Swal.fire('')
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Selecciona una respuesta antes de pasar a la siguiente pregunta',
+                color: '#0AA88E',
+                confirmButtonColor: '#0AA88E',
+            })
         }
     }
 
