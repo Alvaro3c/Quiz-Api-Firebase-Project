@@ -122,7 +122,6 @@ async function printQuestionsAndAnswers() {
 printQuestionsAndAnswers();
 
 
-//Chartist
 const getData = JSON.parse(localStorage.getItem('gameData'));
 
 
@@ -143,3 +142,4 @@ var options = {
 
 
 new Chartist.Line('.ct-chart', chartData, options);
+
