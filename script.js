@@ -4,6 +4,7 @@ async function fetchQuestions() {
         let response = await fetch('https://opentdb.com/api.php?amount=10&category=12&difficulty=medium&type=multiple');
         let data = await response.json();
         let objQuestions = data.results;
+        console.log(objQuestions);
         let getInfo = objQuestions.map(question => ({
             question: question.question,
             correctAnswer: question.correct_answer,
@@ -45,6 +46,7 @@ function showNextQuestion() {
     let questions = section.querySelectorAll('.question');
     let currentIndex = 0;
 
+
     function showQuestionAtIndex(index) {
         questions.forEach((question, i) => {
             if (i === index) {
@@ -61,6 +63,9 @@ function showNextQuestion() {
             currentIndex++;
             if (currentIndex < questions.length) {
                 showQuestionAtIndex(currentIndex);
+                console.log(currentIndex)
+
+
             } else {
                 section.innerHTML = "¡Todas las preguntas han sido respondidas!";
             }
@@ -69,10 +74,19 @@ function showNextQuestion() {
         }
     }
 
+    function handleLastQuestion() {
+        nextButton.innerHTML = '<a href="results.html">Show results</a>'
+        section.innerHTML = "¡Todas las preguntas han sido respondidas!";
+    }
     //BUTTON NEXT
     let nextButton = document.querySelector('.button-next');
-    nextButton.addEventListener('click', handleNextButtonClick);
-
+    nextButton.addEventListener('click', () => {
+        if (currentIndex < questions.length - 1) {
+            handleNextButtonClick()
+        } else {
+            handleLastQuestion()
+        }
+    });
     showQuestionAtIndex(currentIndex);
 }
 
