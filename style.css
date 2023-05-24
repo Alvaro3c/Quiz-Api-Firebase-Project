@@ -30,6 +30,11 @@ label {
     transition: transform 0.3s ease-in-out;
 }
 
+a {
+    text-decoration: none;
+    color: #FFFFFF;
+}
+
 label:hover {
     border: none;
     background-color: #9dd9d2;
@@ -134,8 +139,6 @@ input[type="radio"]:checked+label {
     letter-spacing: 1px;
 }
 
-
-
 .google-logo {
     width: 20px;
     height: 20px;
@@ -154,7 +157,6 @@ input[type="radio"]:checked+label {
     letter-spacing: 2px;
 }
 
-
 .header-quiz h1 {
     display: flex;
 }
@@ -167,7 +169,6 @@ input[type="radio"]:checked+label {
     height: 50px;
     width: 50px;
 }
-
 
 .quiz-container {
     display: flex;
