@@ -84,8 +84,8 @@ function showNextQuestion() {
   
     const currentDate = new Date().toLocaleDateString();
     const gameData = {
-    score: score,
-    date: currentDate
+      score: score,
+      date: currentDate
     };
 
     localStorage.setItem('gameData', JSON.stringify(gameData)); 
@@ -121,3 +121,25 @@ async function printQuestionsAndAnswers() {
 
 printQuestionsAndAnswers();
 
+
+//Chartist
+const getData = JSON.parse(localStorage.getItem('gameData'));
+
+
+const dates = getData.map(gameData => gameData.date);
+const scores = getData.map(gameData => gameData.score);
+
+
+var chartData = {
+  labels: dates,
+  series: [scores]
+};
+
+
+var options = {
+  width: 300,
+  height: 200
+};
+
+
+new Chartist.Line('.ct-chart', chartData, options);
