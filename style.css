@@ -1,8 +1,8 @@
-*{
+* {
     margin: 0;
 }
 
- main{
+main {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -11,7 +11,7 @@
     margin: 0 auto;
 }
 
-input[type="radio"]{
+input[type="radio"] {
     appearance: none;
 }
 
@@ -30,44 +30,51 @@ label {
     transition: transform 0.3s ease-in-out;
 }
 
+a {
+    text-decoration: none;
+    color: #FFFFFF;
+}
+
 label:hover {
     border: none;
     background-color: #0bba9d;
     color: #FFFFFF;
 }
 
-input[type="radio"]:checked + label {
+input[type="radio"]:checked+label {
     border: none;
     background-color: #0bba9d;
     color: #FFFFFF;
     transform: translateY(-5px);
 }
 
-.header-home{
+.header-home {
     display: flex;
     justify-content: center;
     margin-top: 20px;
     margin-bottom: 30px;
     font-family: Quicksand, times, serif;
 }
+
 .header-home img {
     height: 250px;
 }
 
 
-.login-container{
+.login-container {
     text-align: center;
     height: 50%;
     font-family: Quicksand, times, serif;
 }
 
-.register-form{
+.register-form {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     font-family: Quicksand, times, serif;
 }
+
 .register-form input {
     margin: 10px;
     width: 270px;
@@ -77,8 +84,9 @@ input[type="radio"]:checked + label {
     border-radius: 10px;
     font-size: 20px;
     padding-left: 15px;
- }
-.login-button{
+}
+
+.login-button {
     margin-top: 20px;
     margin-bottom: 20px;
     border-radius: 10px;
@@ -88,11 +96,11 @@ input[type="radio"]:checked + label {
     border: 2px solid #5EE2A6;
     color: #0bba9d;
     box-shadow: 0px 2px 4px rgba(11, 186, 157, 0.5);
-  
+
 }
 
 
-#register-btn{
+#register-btn {
     margin-top: 15px;
     border-radius: 10px;
     font-size: 19px;
@@ -103,8 +111,8 @@ input[type="radio"]:checked + label {
     box-shadow: 0px 2px 4px rgba(150, 157, 155, 0.5);
 }
 
- 
-#google-auth{
+
+#google-auth {
     margin-top: 15px;
     border-radius: 10px;
     font-size: 19px;
@@ -117,7 +125,9 @@ input[type="radio"]:checked + label {
 
 
 
-.login-button, #register-btn, #google-auth{
+.login-button,
+#register-btn,
+#google-auth {
     width: 250px;
     height: 50px;
     display: flex;
@@ -128,15 +138,13 @@ input[type="radio"]:checked + label {
     letter-spacing: 1px;
 }
 
-
- 
 .google-logo {
     width: 20px;
     height: 20px;
     margin-right: 10px;
 }
 
-.header-quiz{
+.header-quiz {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -148,21 +156,21 @@ input[type="radio"]:checked + label {
     letter-spacing: 2px;
 }
 
-
-.header-quiz h1{
+.header-quiz h1 {
     display: flex;
 }
-.you{
+
+.you {
     color: #0bba9d
 }
+
 .logo {
     height: 50px;
     width: 50px;
 }
 
-
-.quiz-container{
-    display:flex;
+.quiz-container {
+    display: flex;
     justify-content: center;
     align-items: center;
     margin-right: 15px;
@@ -179,6 +187,7 @@ input[type="radio"]:checked + label {
     border-radius: 10px;
     margin-top: 15px;
     font-size: 25px;
+    min-height: 100px;
 }
 
 .button-next {
@@ -197,7 +206,7 @@ input[type="radio"]:checked + label {
     letter-spacing: 2px;
 }
 
-.results-container{
+.results-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -206,7 +215,8 @@ input[type="radio"]:checked + label {
     font-size: 20px;
     text-transform: uppercase;
 }
-.stats{
+
+.stats {
     width: 150px;
     height: 50px;
     margin-top: 25px;
@@ -223,7 +233,7 @@ input[type="radio"]:checked + label {
     letter-spacing: 2px;
 }
 
-.play-again{
+.play-again {
     width: 150px;
     height: 50px;
     margin-top: 10px;
@@ -240,17 +250,18 @@ input[type="radio"]:checked + label {
     letter-spacing: 2px;
 }
 
-.stats:hover{
+.stats:hover {
     background-color: #0bba9d;
     color: #FFFFFF;
 }
+
 .play-again:hover {
     background-color: #FFFFFF;
     color: #0bba9d;
     border: 1px solid #0bba9d;
 }
 
-.stats:active{
+.stats:active {
     background-color: #0bba9d;
     color: #FFFFFF;
     transform: translateY(-5px);
@@ -259,7 +270,7 @@ input[type="radio"]:checked + label {
 
 .play-again:active {
     background-color: #FFFFFF;
-    color: #0bba9d; 
+    color: #0bba9d;
     border: 1px solid #0bba9d;
     transform: translateY(-5px);
 }
@@ -268,18 +279,23 @@ input[type="radio"]:checked + label {
 /* MEDIAQUERIES */
 
 @media screen and (min-width: 768px) {
+
+
     /* .quiz-container h2 {
         
     } */
     .header-quiz{
+
         display: flex;
         justify-content: center;
         align-items: center;
         flex-direction: row;
     }
+
     .header-quiz h1 {
         font-size: 70px;
     }
+
     .logo {
         height: 80px;
         width: 80px;
@@ -289,3 +305,4 @@ input[type="radio"]:checked + label {
 /* @media screen and (min-width: 1366px){
    
 } */
+

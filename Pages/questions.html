@@ -6,8 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="/style.css">
-
+    <link rel="stylesheet" href="../style.css">
+    <!-- Sweet Alert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.5/dist/sweetalert2.all.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.5/dist/sweetalert2.min.css">
 
     <!-- GoogleFonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -34,27 +36,36 @@
 
             <!-- 
 
-            <!-- <article class="question"> -->
-                <!-- 
+             <article class="question"> -->
+            <!-- 
 
-            <h2>question</h2> 
-            <p>correct answer</p>
-            <p>incorrect answer</p>
-            <p>incorrect answer</p>
-            <p>incorrect answer</p> 
-        
-            <h2>question</h2> 
-            <p>correct answer</p>
-            <p>incorrect answer</p>
-            <p>incorrect answer</p>
-            <p>incorrect answer</p>
+        <div class="answer">
+        <input type="radio" id="answer_${index}_correct" name="answer_${index}" value="${question.correctAnswer}">
+        <label for="answer_${index}_correct">${question.correctAnswer}</label>
+        </div>
+
+        <div class="answer">
+        <input type="radio" id="answer_${index}_incorrect1" name="answer_${index}" value="${question.incorrectAnswers[0]}">
+        <label for="answer_${index}_incorrect1">${question.incorrectAnswers[0]}</label>
+        </div>
+
+        <div class="answer">
+        <input type="radio" id="answer_${index}_incorrect2" name="answer_${index}" value="${question.incorrectAnswers[1]}">
+        <label for="answer_${index}_incorrect2">${question.incorrectAnswers[1]}</label>
+        </div>
+
+        <div class="answer">
+        <input type="radio" id="answer_${index}_incorrect3" name="answer_${index}" value="${question.incorrectAnswers[2]}">
+        <label for="answer_${index}_incorrect3">${question.incorrectAnswers[2]}</label>
+        </div>`
         -->
 
             <!-- </article> -->
-            
+
         </section>
         <button class="button-next">Next</button>
     </main>
+
     <script src="../script.js"></script>
 </body>
 
