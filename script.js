@@ -94,17 +94,14 @@ function showNextQuestion() {
             if (currentIndex < questions.length) {
                 showQuestionAtIndex(currentIndex);
                 console.log(currentIndex)
-
-
             } else {
                 section.innerHTML = "¡Todas las preguntas han sido respondidas!";
             }
         } else {
-            Swal.fire('')
             Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
-                text: 'Selecciona una respuesta antes de pasar a la siguiente pregunta',
+                text: 'Giving up already? Select an answer, you bastard',
                 color: '#0AA88E',
                 confirmButtonColor: '#0AA88E',
             })
@@ -113,7 +110,6 @@ function showNextQuestion() {
 
     function handleLastQuestion() {
         nextButton.innerHTML = '<a href="results.html">Show results</a>'
-        section.innerHTML = "¡Todas las preguntas han sido respondidas!";
     }
     //BUTTON NEXT
     let nextButton = document.querySelector('.button-next');
