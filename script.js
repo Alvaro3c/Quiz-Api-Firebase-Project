@@ -1,3 +1,4 @@
+let getInfo;
 
 async function fetchQuestions() {
     try {
@@ -33,6 +34,15 @@ function randomArray() {
     return questionNumbers
 }
 
+
+
+function getQuestionsFromLocalStorage() {
+  let questionsData = localStorage.getItem('questionsData');
+  if (questionsData) {
+    return JSON.parse(questionsData);
+  }
+  return null;
+}
 
 
 function showQuestion(question, index) {
@@ -71,42 +81,67 @@ function showQuestion(question, index) {
 
     article.innerHTML = print;
     section.appendChild(article);
+
 }
 function showNextQuestion() {
+
     let section = document.querySelector('.question-container');
     let questions = section.querySelectorAll('.question');
     let currentIndex = 0;
 
-    function showQuestionAtIndex(index) {
-        questions.forEach((question, i) => {
-            if (i === index) {
-                question.style.display = 'block';
-            } else {
-                question.style.display = 'none';
-            }
-        });
-    }
+   
+  function showQuestionAtIndex(index) {
+    questions.forEach((question, i) => {
+      if (i === index) {
+        question.style.display = 'block';
+      } else {
+        question.style.display = 'none';
+      }
+    });
+  }
 
-    function handleNextButtonClick() {
-        let selectedAnswer = questions[currentIndex].querySelector(`input[name="answer_${currentIndex}"]:checked`);
-        if (selectedAnswer) {
-            currentIndex++;
-            if (currentIndex < questions.length) {
-                showQuestionAtIndex(currentIndex);
-                console.log(currentIndex)
-            } else {
-                section.innerHTML = "¡Todas las preguntas han sido respondidas!";
-            }
-        } else {
-            Swal.fire({
+  let score = 0;
+
+  function handleNextButtonClick() {
+    const selectedAnswer = questions[currentIndex].querySelector(`input[name="answer_${currentIndex}"]:checked`);
+  
+    if (!selectedAnswer) {
+        Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
                 text: 'Giving up already? Select an answer, you bastard',
                 color: '#0AA88E',
                 confirmButtonColor: '#0AA88E',
             })
-        }
+      return;
     }
+  
+    const userAnswer = selectedAnswer.value;
+    const correctAnswer = getInfo[currentIndex].correctAnswer;
+    const isAnswerCorrect = userAnswer === correctAnswer;
+  
+    if (isAnswerCorrect) {
+      score++;
+    }
+  
+    const currentDate = new Date().toLocaleDateString();
+    const gameData = {
+      score: score,
+      date: currentDate
+    };
+
+    localStorage.setItem('gameData', JSON.stringify(gameData)); 
+    
+    console.log(score);
+  
+    currentIndex++;
+    if (currentIndex < questions.length) {
+      showQuestionAtIndex(currentIndex);
+    } else {
+      section.innerHTML = "¡Todas las preguntas han sido respondidas!";
+
+    }
+
 
     function handleLastQuestion() {
         nextButton.innerHTML = '<a href="results.html">Show results</a>'
@@ -139,4 +174,27 @@ async function printQuestionsAndAnswers() {
 
 printQuestionsAndAnswers();
 
+
+
+//Chartist
+const getData = JSON.parse(localStorage.getItem('gameData'));
+
+
+const dates = getData.map(gameData => gameData.date);
+const scores = getData.map(gameData => gameData.score);
+
+
+var chartData = {
+  labels: dates,
+  series: [scores]
+};
+
+
+var options = {
+  width: 300,
+  height: 200
+};
+
+
+new Chartist.Line('.ct-chart', chartData, options);
 
