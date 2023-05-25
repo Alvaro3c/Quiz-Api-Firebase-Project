@@ -6,7 +6,7 @@ async function fetchQuestions() {
         let data = await response.json();
         let objQuestions = data.results;
         console.log(objQuestions);
-        let getInfo = objQuestions.map(question => ({
+        getInfo = objQuestions.map(question => ({
             question: question.question,
             correctAnswer: question.correct_answer,
             incorrectAnswers: question.incorrect_answers
@@ -51,8 +51,6 @@ function showQuestion(question, index) {
     article.classList.add('question');
 
 
-
-
     let arrTemplateString = [
         `
     <input type="radio" id="answer_${index}_correct" name="answer_${index}" value="${question.correctAnswer}">
@@ -83,6 +81,7 @@ function showQuestion(question, index) {
     section.appendChild(article);
 
 }
+
 function showNextQuestion() {
 
     let section = document.querySelector('.question-container');
@@ -139,25 +138,28 @@ function showNextQuestion() {
       showQuestionAtIndex(currentIndex);
     } else {
       section.innerHTML = "¡Todas las preguntas han sido respondidas!";
-
     }
+  }
 
+  function handleLastQuestion() {
+    nextButton.innerHTML = '<a href="results.html">Show results</a>'
+  }  
 
-    function handleLastQuestion() {
-        nextButton.innerHTML = '<a href="results.html">Show results</a>'
-    }
-    //BUTTON NEXT
-    let nextButton = document.querySelector('.button-next');
-
-    nextButton.addEventListener('click', () => {
-        if (currentIndex < questions.length - 1) {
-            handleNextButtonClick()
-        } else {
-            handleLastQuestion()
-        }
-    });
-    showQuestionAtIndex(currentIndex);
+let nextButton = document.querySelector('.button-next');
+nextButton.addEventListener('click', () => {
+      if (currentIndex < questions.length - 1) {
+          handleNextButtonClick()
+      } else {
+          handleLastQuestion()
+      }
+  });
+  showQuestionAtIndex(currentIndex);
 }
+
+
+
+
+
 
 
 async function printQuestionsAndAnswers() {
@@ -180,21 +182,21 @@ printQuestionsAndAnswers();
 const getData = JSON.parse(localStorage.getItem('gameData'));
 
 
-const dates = getData.map(gameData => gameData.date);
-const scores = getData.map(gameData => gameData.score);
+// const dates = getData.map(gameData => gameData.date);
+// const scores = getData.map(gameData => gameData.score);
 
 
-var chartData = {
-  labels: dates,
-  series: [scores]
-};
+// var chartData = {
+//   labels: dates,
+//   series: [scores]
+// };
 
 
-var options = {
-  width: 300,
-  height: 200
-};
+// var options = {
+//   width: 300,
+//   height: 200
+// };
 
 
-new Chartist.Line('.ct-chart', chartData, options);
-}
+// new Chartist.Line('.ct-chart', chartData, options);
+
