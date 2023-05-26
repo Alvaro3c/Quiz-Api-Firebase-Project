@@ -148,9 +148,14 @@ async function printQuestionsAndAnswers() {
 printQuestionsAndAnswers();
 
 //Chartist
-/* const getData = JSON.parse(localStorage.getItem('gameData'));
+const getData = JSON.parse(localStorage.getItem('gameData'));
 const dates = getData.map(gameData => gameData.date);
 const scores = getData.map(gameData => gameData.score);
+console.log(dates)
+console.log(scores);
+
+
+/* 
 var chartData = {
     labels: dates,
     series: [scores]
@@ -160,4 +165,18 @@ var options = {
     height: 200
 };
 new Chartist.Line('.ct-chart', chartData, options); */
+
+var data = {
+    labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'],
+    series: [
+        [5, 2, 4, 2, 0]
+    ]
+};
+
+var options = {
+    width: 300,
+    height: 200
+};
+new Chartist.Line('.ct-chart', data);
+
 
