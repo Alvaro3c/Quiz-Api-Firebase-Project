@@ -4,7 +4,6 @@ async function fetchQuestions() {
         let response = await fetch('https://opentdb.com/api.php?amount=10&category=12&difficulty=medium&type=multiple');
         let data = await response.json();
         let objQuestions = data.results;
-        console.log(objQuestions);
         getInfo = objQuestions.map(question => ({
             question: question.question,
             correctAnswer: question.correct_answer,
@@ -112,6 +111,7 @@ function showNextQuestion() {
             score: score,
             date: currentDate
         };
+
         localStorage.setItem('gameData', JSON.stringify(gameData));
         console.log(score);
         currentIndex++;
@@ -146,13 +146,20 @@ async function printQuestionsAndAnswers() {
     }
 }
 printQuestionsAndAnswers();
+let obj = {
+    value1: '1',
+    value2: 'h'
+}
+
 
 //Chartist
 const getData = JSON.parse(localStorage.getItem('gameData'));
+console.log(getData)
 const dates = getData.map(gameData => gameData.date);
 const scores = getData.map(gameData => gameData.score);
-console.log(dates)
 console.log(scores);
+
+
 
 
 /* 
@@ -177,6 +184,6 @@ var options = {
     width: 300,
     height: 200
 };
-new Chartist.Line('.ct-chart', data);
+new Chartist.Line('.ct-chart', data, options);
 
 
