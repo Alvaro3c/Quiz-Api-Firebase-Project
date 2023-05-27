@@ -1,4 +1,5 @@
 let getInfo;
+let isResultsStored = false;
 // Traer de la API la información que queremos
 
 async function fetchQuestions() {
@@ -145,6 +146,7 @@ function handleNextButtonClick() {
     nextButton.innerHTML = `<a href="results.html">Show Results</a>`;
     nextButton.removeEventListener('click', handleNextButtonClick); 
 
+    if (!isResultsStored) {
     const currentDate = new Date().toLocaleDateString();
     const gameData = {
     score,
@@ -160,13 +162,16 @@ function handleNextButtonClick() {
   
   scoresData.push(gameData);
   localStorage.setItem('gameData', JSON.stringify(scoresData));
+  isResultsStored = true;
   }  
+}
 
 let nextButton = document.querySelector('.button-next');
 nextButton.addEventListener('click', () => {
       if (currentIndex < questions.length - 1) {
           handleNextButtonClick()
-      } else {
+      }
+       else {
           handleLastQuestion() 
       }
   });
@@ -183,13 +188,11 @@ function getQuestionsFromLocalStorage() {
 }
 
 async function printQuestionsAndAnswers() {
-    let getInfo = await fetchQuestions();
+    getInfo = await fetchQuestions();
     if (getInfo) {
         getInfo.forEach((question, index) => {
             showQuestion(question, index);
         });
-
-
         showNextQuestion();
     }
 }
