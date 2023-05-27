@@ -123,7 +123,6 @@ function showNextQuestion() {
     }
     function handleLastQuestion() {
         nextButton.innerHTML = '<a href="results.html">Show results</a>'
-        //local storage
         const currentDate = new Date().toLocaleDateString();
         const gameData = {
             score: score,
@@ -136,10 +135,11 @@ function showNextQuestion() {
         scoresData.push(gameData);
         localStorage.setItem('gameData', JSON.stringify(scoresData));
     }
-    //BUTTON NEXT
 
+    //BUTTON NEXT
     let nextButton = document.querySelector('.button-next');
     nextButton.addEventListener('click', () => {
+        console.log(currentIndex)
         if (currentIndex < questions.length - 1) {
             handleNextButtonClick()
         } else {
