@@ -196,10 +196,6 @@ async function printQuestionsAndAnswers() {
 
 
 printQuestionsAndAnswers();
-<<<<<<< HEAD
-=======
-
->>>>>>> 3a424512e95c1071db5973b04d0914f252128a35
 
 //Chartist
 const getData = JSON.parse(localStorage.getItem('gameData'));
