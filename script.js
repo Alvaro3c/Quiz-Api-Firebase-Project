@@ -1,4 +1,5 @@
 let getInfo;
+// Traer de la API la información que queremos
 
 async function fetchQuestions() {
     try {
@@ -21,6 +22,8 @@ async function fetchQuestions() {
     }
 }
 
+//Randomizar las respuestas
+
 function randomArray() {
     let topNum = 4;
     let numQuestions = 4;
@@ -35,6 +38,7 @@ function randomArray() {
 }
 
 
+//Si hay respuestas en LocalStorage, que no se actualice
 
 function getQuestionsFromLocalStorage() {
   let questionsData = localStorage.getItem('questionsData');
@@ -44,7 +48,7 @@ function getQuestionsFromLocalStorage() {
   return null;
 }
 
-
+//Mostrar la primera pregunta
 function showQuestion(question, index) {
     let section = document.querySelector('.question-container');
     let article = document.createElement('article');
@@ -82,6 +86,7 @@ function showQuestion(question, index) {
 
 }
 
+//Mostrar la siguiente pregunta
 function showNextQuestion() {
 
     let section = document.querySelector('.question-container');
@@ -99,21 +104,23 @@ function showNextQuestion() {
     });
   }
 
-  let score = 0;
-
-  function handleNextButtonClick() {
-    const selectedAnswer = questions[currentIndex].querySelector(`input[name="answer_${currentIndex}"]:checked`);
   
-    if (!selectedAnswer) {
-        Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'Giving up already? Select an answer, you bastard',
-                color: '#0AA88E',
-                confirmButtonColor: '#0AA88E',
-            })
-      return;
-    }
+//Comprobar si el usuario ha seleccionado una opcion y si es la correcta que se sume al marcador
+let score = 0;
+
+function handleNextButtonClick() {
+  const selectedAnswer = questions[currentIndex].querySelector(`input[name="answer_${currentIndex}"]:checked`);
+  
+  if (!selectedAnswer) {
+      Swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text: 'Giving up already? Select an answer, you bastard',
+              color: '#0AA88E',
+              confirmButtonColor: '#0AA88E',
+          })
+    return;
+  }
   
     const userAnswer = selectedAnswer.value;
     const correctAnswer = getInfo[currentIndex].correctAnswer;
@@ -122,27 +129,37 @@ function showNextQuestion() {
     if (isAnswerCorrect) {
       score++;
     }
-  
-    const currentDate = new Date().toLocaleDateString();
-    const gameData = {
-      score: score,
-      date: currentDate
-    };
-
-    localStorage.setItem('gameData', JSON.stringify(gameData)); 
     
+
     console.log(score);
   
     currentIndex++;
     if (currentIndex < questions.length) {
       showQuestionAtIndex(currentIndex);
     } else {
-      section.innerHTML = "¡Todas las preguntas han sido respondidas!";
+      window.location.href('results.html');
     }
   }
-
+//Que la ultima pregunta vaya a la página de resultados
   function handleLastQuestion() {
-    nextButton.innerHTML = '<a href="results.html">Show results</a>'
+    nextButton.innerHTML = `<a href="results.html">Show Results</a>`
+    nextButton.removeEventListener('click', handleNextButtonClick); 
+
+    const currentDate = new Date().toLocaleDateString();
+    const gameData = {
+    score,
+    date: currentDate
+    };
+
+  // localStorage.setItem('gameData', JSON.stringify(gameData)); 
+
+  let scoresData = [];
+  if (localStorage.getItem('gameData')) {
+    scoresData = JSON.parse(localStorage.getItem('gameData'));
+  }
+  
+  scoresData.push(gameData);
+  localStorage.setItem('gameData', JSON.stringify(scoresData));
   }  
 
 let nextButton = document.querySelector('.button-next');
@@ -150,17 +167,20 @@ nextButton.addEventListener('click', () => {
       if (currentIndex < questions.length - 1) {
           handleNextButtonClick()
       } else {
-          handleLastQuestion()
+          handleLastQuestion() 
       }
   });
   showQuestionAtIndex(currentIndex);
+  
 }
 
-
-
-
-
-
+function getQuestionsFromLocalStorage() {
+  let questionsData = localStorage.getItem('gameData');
+  if (questionsData) {
+    return JSON.parse(questionsData);
+  }
+  return [];
+}
 
 async function printQuestionsAndAnswers() {
     let getInfo = await fetchQuestions();
@@ -176,10 +196,24 @@ async function printQuestionsAndAnswers() {
 
 printQuestionsAndAnswers();
 
+// function showResults() {
+//   const gameData = localStorage.getItem('gameData');
+//   let score = 0;
+
+//   if (gameData) {
+//     score = JSON.parse(gameData).score;
+//   }
+
+//   const resultContainer = document.getElementById('result-container');
+//   resultContainer.textContent = `Tu puntuación: ${score}`;
+// }
+
+// showResults();
+
 
 
 //Chartist
-const getData = JSON.parse(localStorage.getItem('gameData'));
+// const getData = JSON.parse(localStorage.getItem('gameData'));
 
 
 // const dates = getData.map(gameData => gameData.date);
@@ -198,5 +232,5 @@ const getData = JSON.parse(localStorage.getItem('gameData'));
 // };
 
 
-// new Chartist.Line('.ct-chart', chartData, options);
+new Chartist.Line('.ct-chart', chartData, options);
 
