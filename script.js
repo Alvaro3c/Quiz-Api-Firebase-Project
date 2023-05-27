@@ -162,6 +162,18 @@ function showNextQuestion() {
 
 }
 
+function showResult() {
+  let resultsSection = document.querySelector('.results');
+  let scoresData = JSON.parse(localStorage.getItem('gameData'));
+
+  if (scoresData && scoresData.length > 0) {
+    let lastScore = scoresData[scoresData.length - 1];
+    let resultTemplate = `<p class='printResult'>${lastScore.score}</p>`;
+    resultsSection.innerHTML = resultTemplate;
+  } 
+}
+
+
 function getQuestionsFromLocalStorage() {
     let questionsData = localStorage.getItem('gameData');
     if (questionsData) {
@@ -177,9 +189,17 @@ async function printQuestionsAndAnswers() {
             showQuestion(question, index);
         });
         showNextQuestion();
+        showResult();
     }
 }
+
+
+
 printQuestionsAndAnswers();
+<<<<<<< HEAD
+=======
+
+>>>>>>> 3a424512e95c1071db5973b04d0914f252128a35
 
 //Chartist
 const getData = JSON.parse(localStorage.getItem('gameData'));
