@@ -96,16 +96,10 @@ function showNextQuestion() {
             }
         });
     }
-
-
-
-
     //Comprobar si el usuario ha seleccionado una opcion y si es la correcta que se sume al marcador
     let score = 0;
-
     function handleNextButtonClick() {
         const selectedAnswer = questions[currentIndex].querySelector(`input[name="answer_${currentIndex}"]:checked`);
-
         if (!selectedAnswer) {
             Swal.fire({
                 icon: 'error',
@@ -116,7 +110,6 @@ function showNextQuestion() {
             })
             return;
         }
-
         const userAnswer = selectedAnswer.value;
         const correctAnswer = getInfo[currentIndex].correctAnswer;
         const isAnswerCorrect = userAnswer === correctAnswer;
@@ -124,10 +117,6 @@ function showNextQuestion() {
         if (isAnswerCorrect) {
             score++;
         }
-
-
-        console.log(score);
-
         currentIndex++;
         if (currentIndex < questions.length) {
             showQuestionAtIndex(currentIndex);
@@ -207,7 +196,10 @@ async function printQuestionsAndAnswers() {
 
 
 printQuestionsAndAnswers();
+<<<<<<< HEAD
+=======
 
+>>>>>>> 3a424512e95c1071db5973b04d0914f252128a35
 
 //Chartist
 const getData = JSON.parse(localStorage.getItem('gameData'));
@@ -222,26 +214,39 @@ var data = {
     series: [scores]
 };
 
+
 var options = {
-    width: 1200,
+    width: '100%',
     height: 800,
     high: 10,
     low: 0,
     axisY: {
         onlyInteger: true,
         offset: 20
-    }
+    },
+    chartPadding: {
+        top: 100,
+        right: 100,
+        bottom: 100,
+        left: 100
+    },
 };
 
 var responsiveOptions = [
-    ['screen and (min-width: 641px) and (max-width: 1024px)', {
+    ['screen and (min-width: 641px)and (max-width: 1024px)', {
         showPoint: false,
         axisX: {
             labelInterpolationFnc: function (value) {
                 // Will return Mon, Tue, Wed etc. on medium screens
                 return value.slice(0, 3);
             }
-        }
+        },
+        chartPadding: {
+            top: 100,
+            right: 100,
+            bottom: 100,
+            left: 100
+        },
     }],
     ['screen and (max-width: 640px)', {
         showLine: false,
@@ -250,46 +255,20 @@ var responsiveOptions = [
                 // Will return M, T, W etc. on small screens
                 return value[0];
             }
-        }
+        },
+        chartPadding: {
+            top: 100,
+            right: 10,
+            bottom: 10,
+            left: 10
+        },
     }]
 ];
 
-var defaultOptions = {
-    // Options for X-Axis
-    axisX: {
-        // Allows you to correct label positioning on this axis by positive or negative x and y offset.
-        // If labels should be shown or not
-        showLabel: true,
-        // If the axis grid should be drawn or not
-        showGrid: false,
-    },
-
-    // Specify a fixed width for the chart as a string (i.e. '100px' or '50%')
-    width: '50%',
-    // Specify a fixed height for the chart as a string (i.e. '100px' or '50%')
-    height: '50%',
-    // If the line should be drawn or not
-    showLine: true,
-    // If dots should be drawn or not
-    showPoint: true,
-    // The base for the area chart that will be used to close the area shape (is normally 0)
-    areaBase: 0,
-    // Padding of the chart drawing area to the container element and labels as a number or padding object {top: 5, right: 5, bottom: 5, left: 5}
-    chartPadding: {
-        top: 150,
-        right: 15,
-        bottom: 5,
-        left: 10
-    },
-
-    // Override the class names that get used to generate the SVG structure of the chart
-    classNames: {
-        chart: 'ct-chart-line',
-    }
-}
 
 
-new Chartist.Line('.ct-chart', data, options, null, responsiveOptions, defaultOptions);
+
+new Chartist.Line('.ct-chart', data, options, responsiveOptions);
 
 
 

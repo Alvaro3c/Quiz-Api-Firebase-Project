@@ -46,6 +46,7 @@ input[type="radio"]:checked+label {
     background-color: #0bba9d;
     color: #FFFFFF;
     transform: translateY(-5px);
+
 }
 
 .header-home {
@@ -97,8 +98,8 @@ input[type="radio"]:checked+label {
     color: #0bba9d;
     box-shadow: 0px 2px 4px rgba(11, 186, 157, 0.5);
 
-}
 
+}
 
 #register-btn {
     margin-top: 15px;
@@ -111,7 +112,6 @@ input[type="radio"]:checked+label {
     box-shadow: 0px 2px 4px rgba(150, 157, 155, 0.5);
 }
 
-
 #google-auth {
     margin-top: 15px;
     border-radius: 10px;
@@ -122,8 +122,6 @@ input[type="radio"]:checked+label {
     box-shadow: 0px 2px 4px rgba(11, 186, 157, 0.5);
     color: #000000;
 }
-
-
 
 .login-button,
 #register-btn,
@@ -136,8 +134,24 @@ input[type="radio"]:checked+label {
     cursor: pointer;
     font-family: Quicksand, times, serif;
     letter-spacing: 1px;
+    cursor: pointer;
 }
 
+.login-button:hover,
+#register-btn:hover,
+#google-auth:hover {
+    background-color: #FFFFFF;
+    color: #0bba9d;
+    border: 1px solid #0bba9d;
+}
+
+.login-button:active,
+#register-btn:active,
+#google-auth:active {
+    background-color: #0bba9d;
+    color: #FFFFFF;
+    transform: translateY(-5px);
+}
 
 .google-logo {
     width: 20px;
@@ -210,6 +224,13 @@ input[type="radio"]:checked+label {
     box-shadow: 0px 2px 4px rgba(11, 186, 157, 0.5);
     color: #FFFFFF;
     letter-spacing: 2px;
+    cursor: pointer;
+}
+
+.button-next:active {
+    background-color: #0bba9d;
+    color: #FFFFFF;
+    transform: translateY(-5px);
 }
 
 .results-container {
@@ -238,11 +259,7 @@ input[type="radio"]:checked+label {
     color: #FFFFFF;
     transition: transform 0.3s ease-in-out;
     letter-spacing: 2px;
-}
-
-.stats:hover {
-    background-color: #0bba9d;
-    color: #FFFFFF;
+    cursor: pointer;
 }
 
 .play-again:hover {
@@ -277,20 +294,22 @@ input[type="radio"]:checked+label {
     display: none;
 }
 
-.ct-series-a .ct-point {
-    stroke-width: 10px;
-    stroke-linecap: round;
+.swal2-popup {
+    font-size: 1.6rem !important;
+    font-family: Quicksand, times, serif;
 }
-
 
 /* MEDIAQUERIES */
 
 @media screen and (min-width: 768px) {
 
-
     /* .quiz-container h2 {
         
     } */
+    label {
+        min-width: 60%;
+    }
+
     .header-quiz {
 
         display: flex;
@@ -307,6 +326,8 @@ input[type="radio"]:checked+label {
         height: 80px;
         width: 80px;
     }
+
+
 }
 
 /* @media screen and (min-width: 1366px){

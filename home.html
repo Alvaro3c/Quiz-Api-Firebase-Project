@@ -6,7 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-
+    <!-- chartlist -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">
+    <script src="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
     <!-- GoogleFonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,7 +21,7 @@
 <body>
     <header class="header-home">
 
-            <img src="../Assets/logo1.png" alt="logo">        
+        <img src="../Assets/logo1.png" alt="logo">
 
     </header>
     <main class="login-container">
@@ -27,7 +29,7 @@
             <form class="register-form">
                 <input type="email" id="email" placeholder="Your Email" required>
                 <input type="password" id="password" placeholder="Password"
-                    pattern="^(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{6,}$" required> 
+                    pattern="^(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{6,}$" required>
                 <button class="login-button">Log in</button>
                 <p class="or">Not register yet?</p>
                 <button id="register-btn">Sign up</button>
@@ -45,6 +47,11 @@
                 </div>
                 <!-- <button id="play-again-home">Play again</button> -->
             </article>
+        </section>
+        <section class="hidden">
+            <div class="ct-chart ct-perfect-fourth"></div>
+            <button class="button-next"></button>
+            <section class="question-container"></section>
         </section>
     </main>
     <script src="script.js"></script>
