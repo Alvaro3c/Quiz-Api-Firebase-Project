@@ -307,17 +307,13 @@ input[type="radio"]:checked+label {
     font-family: Quicksand, times, serif;
 }
 
-.chart {}
-
 /* MEDIAQUERIES */
 
 @media screen and (min-width: 768px) {
 
-
     /* .quiz-container h2 {
         
     } */
-
     label {
         min-width: 60%;
     }
