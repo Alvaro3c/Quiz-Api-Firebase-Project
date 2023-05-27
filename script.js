@@ -173,6 +173,18 @@ function showNextQuestion() {
 
 }
 
+function showResult() {
+  let resultsSection = document.querySelector('.results');
+  let scoresData = JSON.parse(localStorage.getItem('gameData'));
+
+  if (scoresData && scoresData.length > 0) {
+    let lastScore = scoresData[scoresData.length - 1];
+    let resultTemplate = `<p class='printResult'>${lastScore.score}</p>`;
+    resultsSection.innerHTML = resultTemplate;
+  } 
+}
+
+
 function getQuestionsFromLocalStorage() {
     let questionsData = localStorage.getItem('gameData');
     if (questionsData) {
@@ -182,19 +194,19 @@ function getQuestionsFromLocalStorage() {
 }
 
 async function printQuestionsAndAnswers() {
-    getInfo = await fetchQuestions();
+    let getInfo = await fetchQuestions();
     if (getInfo) {
         getInfo.forEach((question, index) => {
             showQuestion(question, index);
         });
         showNextQuestion();
+        showResult();
     }
 }
+
+
+
 printQuestionsAndAnswers();
-let obj = {
-    value1: '1',
-    value2: 'h'
-}
 
 
 //Chartist
