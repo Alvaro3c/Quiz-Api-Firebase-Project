@@ -142,7 +142,7 @@ function handleNextButtonClick() {
   }
 //Que la ultima pregunta vaya a la página de resultados
   function handleLastQuestion() {
-    nextButton.innerHTML = `<a href="results.html">Show Results</a>`
+    nextButton.innerHTML = `<a href="results.html">Show Results</a>`;
     nextButton.removeEventListener('click', handleNextButtonClick); 
 
     const currentDate = new Date().toLocaleDateString();
