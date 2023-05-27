@@ -199,19 +199,7 @@ async function printQuestionsAndAnswers() {
 
 printQuestionsAndAnswers();
 
-// function showResults() {
-//   const gameData = localStorage.getItem('gameData');
-//   let score = 0;
 
-//   if (gameData) {
-//     score = JSON.parse(gameData).score;
-//   }
-
-//   const resultContainer = document.getElementById('result-container');
-//   resultContainer.textContent = `Tu puntuación: ${score}`;
-// }
-
-// showResults();
 
 
 
