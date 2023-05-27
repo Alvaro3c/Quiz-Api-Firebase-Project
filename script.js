@@ -228,8 +228,6 @@ var responsiveOptions = [
             left: 100
         },
     }],
-
-
     ['screen and (max-width: 640px)', {
         showLine: false,
         axisX: {
