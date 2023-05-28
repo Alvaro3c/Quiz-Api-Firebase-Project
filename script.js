@@ -1,18 +1,26 @@
-/* // Your web app's Firebase configuration
-let firebaseConfig = {
-    apiKey: "AIzaSyDz1tQjEXFCDEWnRm9J8MzHtzXkNPhjyfU",
-    authDomain: "quiz2-ce40f.firebaseapp.com",
-    projectId: "quiz2-ce40f",
-    storageBucket: "quiz2-ce40f.appspot.com",
-    messagingSenderId: "466936444764",
-    appId: "1:466936444764:web:2e5376aa50a5d2d47fb399",
-};
-// Initialize Firebase
-firebase.initializeApp(firebaseConfig);
-const db = firebase.firestore();
- */
+
+// import firebase from 'firebase/app';
+// import 'firebase/firestore';
+
+// const firebaseConfig = {
+//   apiKey: "AIzaSyAgFf9qOg2yhXzblzzZf_FYkQefQfTr014",
+//   authDomain: "quiz-api-firebase.firebaseapp.com",
+//   projectId: "quiz-api-firebase",
+//   storageBucket: "quiz-api-firebase.appspot.com",
+//   messagingSenderId: "160210260853",
+//   appId: "1:160210260853:web:a1e990bb29ede8b952393c"
+// };
+
+// firebase.initializeApp(firebaseConfig);
+
+// const firestore = firebase.firestore();
+
 let getInfo;
+let score = 0;
+let gameData = null;
+
 let isResultsStored = false;
+
 // Traer de la API la información que queremos
 
 async function fetchQuestions() {
@@ -46,7 +54,7 @@ function randomArray() {
             questionNumbers.push(num);
         }
     }
-    return questionNumbers
+    return questionNumbers;
 }
 
 
@@ -109,8 +117,9 @@ function showNextQuestion() {
             }
         });
     }
+    
     //Comprobar si el usuario ha seleccionado una opcion y si es la correcta que se sume al marcador
-    let score = 0;
+    
     function handleNextButtonClick() {
         const selectedAnswer = questions[currentIndex].querySelector(`input[name="answer_${currentIndex}"]:checked`);
         if (!selectedAnswer) {
@@ -134,7 +143,7 @@ function showNextQuestion() {
         if (currentIndex < questions.length) {
             showQuestionAtIndex(currentIndex);
         } else {
-            window.location.href('results.html');
+            window.location.href = 'results.html';
         }
     }
     //Que la ultima pregunta vaya a la página de resultados
@@ -144,12 +153,11 @@ function showNextQuestion() {
 
         if (!isResultsStored) {
             const currentDate = new Date().toLocaleDateString();
-            const gameData = {
+            gameData = {
                 score,
                 date: currentDate
             };
 
-            // localStorage.setItem('gameData', JSON.stringify(gameData)); 
 
             let scoresData = [];
             if (localStorage.getItem('gameData')) {
@@ -159,6 +167,7 @@ function showNextQuestion() {
             scoresData.push(gameData);
             localStorage.setItem('gameData', JSON.stringify(scoresData));
             isResultsStored = true;
+            enviarDatosAFirebase();
         }
     }
 
@@ -179,12 +188,14 @@ function showResult() {
     let resultsSection = document.querySelector('.results');
     let scoresData = JSON.parse(localStorage.getItem('gameData'));
 
+
     if (scoresData && scoresData.length > 0) {
         let lastScore = scoresData[scoresData.length - 1];
         let resultTemplate = `<p class='printResult'>${lastScore.score}</p>`;
         resultsSection.innerHTML = resultTemplate;
     }
 }
+
 
 async function printQuestionsAndAnswers() {
     let getInfo = await fetchQuestions();
@@ -196,14 +207,14 @@ async function printQuestionsAndAnswers() {
         showResult();
     }
 }
+
 printQuestionsAndAnswers();
+
 //Chartist
 const getData = JSON.parse(localStorage.getItem('gameData'));
-console.log(getData)
 const dates = getData.map(gameData => gameData.date);
-console.log(dates)
 const scores = getData.map(gameData => gameData.score);
-console.log(scores)
+
 
 var data = {
     labels: dates,
@@ -257,7 +268,24 @@ var responsiveOptions = [
         },
     }]
 ];
+
+
 new Chartist.Line('.ct-chart', data, options, responsiveOptions);
+
+//FIREBASE
+// function enviarDatosAFirebase() {
+//   const colRef = firestore.collection('scoreData');
+//     colRef.add({
+//     score: gameData.score,
+//     date: gameData.date
+//   })
+//   .then(function(docRef) {
+//     console.log("Datos de puntuación agregados con éxito:", docRef.id);
+//   })
+//   .catch(function(error) {
+//     console.error("Error al agregar los datos de puntuación: ", error);
+//   });
+// }
 
 
 
