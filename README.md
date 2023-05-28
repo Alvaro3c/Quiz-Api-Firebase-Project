@@ -16,6 +16,12 @@ the data collected during game interactions.
 - Branching system to manage de project
 ### Links
 ### Screenshots
+![Home](Screenshots/home-mobile)
+![Home](Screenshots/home-tablet)
+![Questions](Screenshots/question-mobile)
+![Questions](Screenshots/question-tablet)
+![Results](Screenshots/result-mobile)
+![Results](Screenshots/result-tablet)
 ### Improvements
 - Migrate data to Firebase
 - Allow the user to see if they have answered the question correctly or not in real-time
