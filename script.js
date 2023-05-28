@@ -1,3 +1,4 @@
+
 // import firebase from 'firebase/app';
 // import 'firebase/firestore';
 
@@ -157,7 +158,6 @@ function showNextQuestion() {
                 date: currentDate
             };
 
-            // localStorage.setItem('gameData', JSON.stringify(gameData)); 
 
             let scoresData = [];
             if (localStorage.getItem('gameData')) {
@@ -185,15 +185,17 @@ function showNextQuestion() {
 }
 
 function showResult() {
-  let resultsSection = document.querySelector('.results');
-  let scoresData = JSON.parse(localStorage.getItem('gameData'));
+    let resultsSection = document.querySelector('.results');
+    let scoresData = JSON.parse(localStorage.getItem('gameData'));
 
-  if (scoresData && scoresData.length > 0) {
-    let lastScore = scoresData[scoresData.length - 1];
-    let resultTemplate = `<p class='printResult'>${lastScore.score}</p>`;
-    resultsSection.innerHTML = resultTemplate;
-  } 
+
+    if (scoresData && scoresData.length > 0) {
+        let lastScore = scoresData[scoresData.length - 1];
+        let resultTemplate = `<p class='printResult'>${lastScore.score}</p>`;
+        resultsSection.innerHTML = resultTemplate;
+    }
 }
+
 
 async function printQuestionsAndAnswers() {
     let getInfo = await fetchQuestions();
@@ -218,8 +220,6 @@ var data = {
     labels: dates,
     series: [scores]
 };
-
-
 var options = {
     width: '100%',
     height: 800,
@@ -230,26 +230,25 @@ var options = {
         offset: 20
     },
     chartPadding: {
-        top: 100,
+        top: 50,
         right: 100,
-        bottom: 100,
+        bottom: 1,
         left: 100
     },
 };
-
 var responsiveOptions = [
     ['screen and (min-width: 641px)and (max-width: 1024px)', {
         showPoint: false,
         axisX: {
             labelInterpolationFnc: function (value) {
                 // Will return Mon, Tue, Wed etc. on medium screens
-                return value.slice(0, 3);
+                return value.slice(0, 4);
             }
         },
         chartPadding: {
-            top: 100,
+            top: 50,
             right: 100,
-            bottom: 100,
+            bottom: 1,
             left: 100
         },
     }],
@@ -258,17 +257,18 @@ var responsiveOptions = [
         axisX: {
             labelInterpolationFnc: function (value) {
                 // Will return M, T, W etc. on small screens
-                return value[0];
+                return value.slice(0, 4);
             }
         },
         chartPadding: {
-            top: 100,
+            top: 50,
             right: 10,
             bottom: 10,
             left: 10
         },
     }]
 ];
+
 
 new Chartist.Line('.ct-chart', data, options, responsiveOptions);
 
@@ -290,8 +290,19 @@ new Chartist.Line('.ct-chart', data, options, responsiveOptions);
 
 
 
-
-
-
+/* async function saveScoreFirebase() {
+    db.collection("scores")
+        .add({
+            date: Date(),
+            score: scores,
+        })
+        .then((docRef) => {
+            console.log("Document written with ID: ", docRef.id);
+        })
+        .catch((error) => {
+            console.error("Error adding document: ", error);
+        });
+}
+saveScoreFirebase() */
 
 
