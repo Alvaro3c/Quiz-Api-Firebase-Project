@@ -243,6 +243,11 @@ input[type="radio"]:checked+label {
     text-transform: uppercase;
 }
 
+#graph-title {
+    font-family: Quicksand, times, serif;
+    font-size: 25px;
+    margin-top: 70px;
+}
 
 .play-again {
     width: 150px;
@@ -283,7 +288,7 @@ input[type="radio"]:checked+label {
 }
 
 
-.printResult{
+.printResult {
     font-size: 50px;
     font-weight: bold;
     color: #0bba9d;
@@ -298,6 +303,20 @@ input[type="radio"]:checked+label {
     font-size: 1.6rem !important;
     font-family: Quicksand, times, serif;
 }
+
+.ct-series-a .ct-line {
+    /* Set the colour of this series line */
+    stroke: red;
+    /* Control the thikness of your lines */
+    stroke-width: 4px;
+    /* Create a dashed line with a pattern */
+
+}
+
+
+
+
+
 
 /* MEDIAQUERIES */
 

@@ -1,3 +1,16 @@
+/* // Your web app's Firebase configuration
+let firebaseConfig = {
+    apiKey: "AIzaSyDz1tQjEXFCDEWnRm9J8MzHtzXkNPhjyfU",
+    authDomain: "quiz2-ce40f.firebaseapp.com",
+    projectId: "quiz2-ce40f",
+    storageBucket: "quiz2-ce40f.appspot.com",
+    messagingSenderId: "466936444764",
+    appId: "1:466936444764:web:2e5376aa50a5d2d47fb399",
+};
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
+ */
 let getInfo;
 let isResultsStored = false;
 // Traer de la API la información que queremos
@@ -163,23 +176,14 @@ function showNextQuestion() {
 }
 
 function showResult() {
-  let resultsSection = document.querySelector('.results');
-  let scoresData = JSON.parse(localStorage.getItem('gameData'));
+    let resultsSection = document.querySelector('.results');
+    let scoresData = JSON.parse(localStorage.getItem('gameData'));
 
-  if (scoresData && scoresData.length > 0) {
-    let lastScore = scoresData[scoresData.length - 1];
-    let resultTemplate = `<p class='printResult'>${lastScore.score}</p>`;
-    resultsSection.innerHTML = resultTemplate;
-  } 
-}
-
-
-function getQuestionsFromLocalStorage() {
-    let questionsData = localStorage.getItem('gameData');
-    if (questionsData) {
-        return JSON.parse(questionsData);
+    if (scoresData && scoresData.length > 0) {
+        let lastScore = scoresData[scoresData.length - 1];
+        let resultTemplate = `<p class='printResult'>${lastScore.score}</p>`;
+        resultsSection.innerHTML = resultTemplate;
     }
-    return [];
 }
 
 async function printQuestionsAndAnswers() {
@@ -192,15 +196,7 @@ async function printQuestionsAndAnswers() {
         showResult();
     }
 }
-
-
-
 printQuestionsAndAnswers();
-<<<<<<< HEAD
-=======
-
->>>>>>> 3a424512e95c1071db5973b04d0914f252128a35
-
 //Chartist
 const getData = JSON.parse(localStorage.getItem('gameData'));
 console.log(getData)
@@ -213,8 +209,6 @@ var data = {
     labels: dates,
     series: [scores]
 };
-
-
 var options = {
     width: '100%',
     height: 800,
@@ -225,26 +219,25 @@ var options = {
         offset: 20
     },
     chartPadding: {
-        top: 100,
+        top: 50,
         right: 100,
-        bottom: 100,
+        bottom: 1,
         left: 100
     },
 };
-
 var responsiveOptions = [
     ['screen and (min-width: 641px)and (max-width: 1024px)', {
         showPoint: false,
         axisX: {
             labelInterpolationFnc: function (value) {
                 // Will return Mon, Tue, Wed etc. on medium screens
-                return value.slice(0, 3);
+                return value.slice(0, 4);
             }
         },
         chartPadding: {
-            top: 100,
+            top: 50,
             right: 100,
-            bottom: 100,
+            bottom: 1,
             left: 100
         },
     }],
@@ -253,28 +246,35 @@ var responsiveOptions = [
         axisX: {
             labelInterpolationFnc: function (value) {
                 // Will return M, T, W etc. on small screens
-                return value[0];
+                return value.slice(0, 4);
             }
         },
         chartPadding: {
-            top: 100,
+            top: 50,
             right: 10,
             bottom: 10,
             left: 10
         },
     }]
 ];
-
-
-
-
 new Chartist.Line('.ct-chart', data, options, responsiveOptions);
 
 
 
 
-
-
-
+/* async function saveScoreFirebase() {
+    db.collection("scores")
+        .add({
+            date: Date(),
+            score: scores,
+        })
+        .then((docRef) => {
+            console.log("Document written with ID: ", docRef.id);
+        })
+        .catch((error) => {
+            console.error("Error adding document: ", error);
+        });
+}
+saveScoreFirebase() */
 
 
