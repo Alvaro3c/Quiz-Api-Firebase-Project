@@ -28,7 +28,6 @@ async function fetchQuestions() {
         let response = await fetch('https://opentdb.com/api.php?amount=10&category=12&difficulty=medium&type=multiple');
         let data = await response.json();
         let objQuestions = data.results;
-        console.log(objQuestions);
         getInfo = objQuestions.map(question => ({
             question: question.question,
             correctAnswer: question.correct_answer,
@@ -117,9 +116,9 @@ function showNextQuestion() {
             }
         });
     }
-    
+
     //Comprobar si el usuario ha seleccionado una opcion y si es la correcta que se sume al marcador
-    
+
     function handleNextButtonClick() {
         const selectedAnswer = questions[currentIndex].querySelector(`input[name="answer_${currentIndex}"]:checked`);
         if (!selectedAnswer) {
